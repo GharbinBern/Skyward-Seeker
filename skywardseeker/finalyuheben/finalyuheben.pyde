@@ -4,7 +4,8 @@ import os
 import random
 
 # Initialize PATH
-PATH = os.getcwd()
+# PATH = os.getcwd()
+PATH = os.path.dirname(os.getcwd())
 
 
 minim=Minim(this)
@@ -116,10 +117,12 @@ class Player:
             self.num_bullets = self.num_bullets - 1
     
     def reach_gold(self):
-        if self.distance(game.gold)<=10:
+        # Check if player's center is inside the gold's rectangle
+        if (self.x > game.gold.x and self.x < game.gold.x + game.gold.w and
+            self.y > game.gold.y and self.y < game.gold.y + game.gold.h):
             return True
         else:
-            return False     
+            return False
 
     # Implement update method to handle bullets
     def update_bullets(self):
@@ -1004,7 +1007,8 @@ def keyReleased():
 # mouseClicked function for handling mouse click events
 def mouseClicked():
     if game.start:
-        game.music_start.loop()
+        if not game.music_start.isPlaying():
+            game.music_start.loop()
         if game.StartandSelect.L1_btn.x<=mouseX<=game.StartandSelect.L1_btn.x+game.StartandSelect.L1_btn.w and game.StartandSelect.L1_btn.y<=mouseY<=game.StartandSelect.L1_btn.y+game.StartandSelect.L1_btn.h:
             game.start=False
             game.scene_L1_instruction.visible=True
