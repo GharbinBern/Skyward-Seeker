@@ -47,9 +47,5 @@ skywardseeker/
 - Developed by GharbinBern
 - Sound and image assets from open sources and custom design
 
-## License
-This project is for educational and personal use. 
-
-
 
 
